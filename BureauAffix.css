@@ -1,0 +1,50 @@
+body {
+  text-align: center;
+  width: 100%;
+  margin: 0px auto 0px auto;
+}
+
+.square {
+    width: 200px; /* set the desired width */
+    height: 200px; /* set the same height as width to make it a square */
+    text-align: center;
+  }
+  
+  .square img {
+    max-width: 100%; /* make sure the image doesn't exceed the width of the container */
+    max-height: 100%; /* make sure the image doesn't exceed the height of the container */
+    margin-left: 50px;
+    margin-top: 50px;
+  } 
+  .lists {
+    margin: 0px auto 100px auto;
+  }
+  img {
+    border-radius: 10px;
+  }
+  .round-btn {
+    border-radius: 20px;
+    width: 50px;
+    height: 50px;
+    font-size: 1.3rem;
+    font-weight: bolder;
+    position: absolute;
+    right: 1%;
+    bottom: 1%;
+}
+.content-container {
+   margin: 50px auto 20px auto
+}
+.input-tag {
+  width: 30%;
+  margin: 10px auto 10px auto;
+}
+.form-control-custom {
+    width: 40%;
+}
+.centering {
+text-align: left;
+}
+#file-upload-button {
+  background-color: black!important;
+}
