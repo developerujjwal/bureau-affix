@@ -1,10 +1,9 @@
 import {app,db,getStorage,uploadBytesResumable,getDownloadURL,ref,get,set} from './firebase.js'
-let registrationData = [];
-console.log(db);
-var ul = document.querySelector("#employee-list");
-console.log("rd", ref);
-let name = "aryan";
+
+
+
 function getFromDatabase() {
+    let registrationData = [];
     return (get(ref(db, 'registration')).then((snapshot) => {
         console.log("snapshot", snapshot.val());
         snapshot.forEach((value) => {
