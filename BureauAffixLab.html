@@ -217,7 +217,7 @@
 
                         payload.img = url;
                         console.log("labs data", payload);
-                        set(ref(db, 'labs/' + payload.name), payload).then(() => { alert("Data Uploaded"); }).catch((e) => { console.log(e); alert(e); });
+                        set(ref(db, 'labs/' + payload.name), payload).then(() => {  location.reload(); }).catch((e) => { console.log(e); alert(e); });
 
                     })
                 })
