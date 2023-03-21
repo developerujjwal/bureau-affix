@@ -22,7 +22,7 @@ function getFromDatabase() {
             // let listName = document.querySelector("#cardName");
             newCard.innerHTML = `
             <div id="empCard" class="card col-md-2" style="width: 18rem; margin-top: 20px;">
-        <img src="./Add a subheading/3.png" class="card-img-top" alt="...">
+        <img src="${registrationData[i].img}" class="card-img-top" alt="..." width="200px" height="200px" draggable="false">
         <div class="card-body" id="">
             <p class="card-text" style="display: inline-block;">Name :</p>
             <h5 class="card-title" id="cardName" style="display: inline-block;">${registrationData[i].name}</h5>

@@ -35,10 +35,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="BureauAffixBlog.html">Blog</a>
                     </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="BureauAffixLab.html">Labs</a>
-                        </li>
-                  
+                    <li class="nav-item">
+                        <a class="nav-link" href="BureauAffixLab.html">Labs</a>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="BureauAffixSynergy.html">Synergy Projects</a>
                     </li>
@@ -65,16 +65,16 @@
                         <header>
                             <h1>Add Lab</h1>
                         </header>
-                        <form method="post" action="" name="employee-form">
+                        <form method="post" action="" name="lab-form" id="lab-form">
                             <br><br>
                             <div class="form-control-custom centering">
-                                 <label for="photo">Photo:</label>
-                                 <input type="file" id="photo" name="photo">
-                        </div>
+                                <label for="photo">Photo:</label>
+                                <input type="file" id="photo" name="photo">
+                            </div>
                             <br><br>
                             <div class="mb-3">
                                 <label for="lab name" class="form-label">lab Name:</label>
-                                <input type="text" class="form-control" id="lab name" name="lab name" required>
+                                <input type="text" class="form-control" id="lab-name" name="lab name" required>
                             </div>
                             <br> <br>
                             <div class="mb-3">
@@ -84,15 +84,14 @@
                             <br> <br>
                             <div class="form-control-custom centering">
                                 <label for="Room no." class="form-label">Room no.:</label>
-                                <input type="number" class="form-control" id="Room no." name="Room no."
-                                    required>
+                                <input type="number" class="form-control" id="room-no" name="Room no." required>
                             </div>
                             <br> <br>
                             <div class="form-control-custom centering">
                                 <label for="Faculty">Faculty:</label>
-                                <select id="Faculty" name="Faculty" required>
+                                <select id="faculty" name="Faculty" required>
                                     <br> <br>
-                                    <option value="" disabled selected>Select department</option>
+                                    <option value="" selected>Select department</option>
                                     <option value="IT">IT</option>
                                     <option value="HR">HR</option>
                                     <option value="Marketing">Marketing</option>
@@ -101,11 +100,10 @@
                             <br> <br>
                             <div class="form-control-custom centering">
                                 <label for="Resources" class="form-label">Resources:</label>
-                                <input type="text" class="form-control" id="Resources" name="Resources"
-                                    required>
+                                <input type="text" class="form-control" id="resources" name="Resources" required>
                             </div>
                             <br><br>
-                            <button type="button" id="add-Research" onclick="savResearch()">Add Lab</button>
+                            <button type="submit" id="add-Research">Add Lab</button>
                         </form>
 
                     </center>
@@ -118,42 +116,173 @@
     <header>
         <h1>Labs</h1>
     </header>
-        <div class="content-container">
-            <form>
-                <div class="mb-3">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-danger">All</button>
-                        <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="visually-hidden">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">All</a></li>
-                            <li><a class="dropdown-item" href="#">COMPUTER SCIENCE</a></li>
-                            <li><a class="dropdown-item" href="#">DENTAL</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">FASHION DESIGN</a></li>
-                        </ul>
-                    </div>
+    <div class="content-container">
+        <form>
+            <div class="mb-3">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-danger">All</button>
+                    <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="visually-hidden">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">All</a></li>
+                        <li><a class="dropdown-item" href="#">COMPUTER SCIENCE</a></li>
+                        <li><a class="dropdown-item" href="#">DENTAL</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">FASHION DESIGN</a></li>
+                    </ul>
                 </div>
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label"><b>Search by Name</b></label>
-                    <input type="email" class="form-control input-tag" id="exampleInputEmail1"
-                        aria-describedby="emailHelp" placeholder="Searh here....">
-                    <div id="emailHelp" class="form-text">Just Type in the Name here</div>
-                </div>
-                <button type="submit" class="btn btn-primary">Search</button>
-            </form>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label"><b>Search by Name</b></label>
+                <input type="email" class="form-control input-tag" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    placeholder="Searh here....">
+                <div id="emailHelp" class="form-text">Just Type in the Name here</div>
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
 
-            <ul id="Labs-list"></ul>
-            </main>
+        <ul id="labs-list"></ul>
+        </main>
 
-        </div>
-   
+    </div>
+
     <script src="BureauAffix.js"></script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-analytics.js";
+        import { getDatabase, ref, get, set } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-database.js";
+        import { getStorage, uploadBytesResumable, getDownloadURL, ref as sref } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-storage.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
 
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyAZ8H5V43Im4GXh9giiVFh6ZQcmDw0hq4Y",
+            authDomain: "bureau-affix-e756f.firebaseapp.com",
+            databaseURL: "https://bureau-affix-e756f-default-rtdb.firebaseio.com",
+            projectId: "bureau-affix-e756f",
+            storageBucket: "bureau-affix-e756f.appspot.com",
+            messagingSenderId: "193095277862",
+            appId: "1:193095277862:web:0872830fa385fe347235e7",
+            measurementId: "G-VYM13FB1ME"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        // const analytics = getAnalytics(app);
+        const db = getDatabase(app);
+        const storage = getStorage(app);
+
+        const form = document.querySelector('#lab-form');
+
+        console.log(name);
+
+        form.addEventListener('submit', (e) => {
+
+            e.preventDefault();
+            var lname = document.querySelector('#lab-name').value;
+            var linc = document.querySelector('#lab-inc').value;
+            var room = document.querySelector('#room-no').value;
+            var fac = document.querySelector('#faculty').value;
+            var res = document.querySelector('#resources').value;
+            var pic = document.querySelector('#photo').files[0];
+            console.log(pic);
+
+
+
+            var url = "";
+
+            var payload = {
+                name: lname,
+                labInc: linc,
+                roomNo: room,
+                faculty: fac,
+                resources: res,
+                img: url
+            }
+
+            // var thisRef = storage.child("images/");
+            async function setData() {
+                let fireStorage = sref(storage, `labs/${payload.name}/` + pic.name);
+                const uploadImg = uploadBytesResumable(fireStorage, pic, pic.type);
+                await uploadImg.on('state_changed', () => {
+                    getDownloadURL(uploadImg.snapshot.ref).then((url) => {
+                        console.log(url);
+
+                        payload.img = url;
+                        console.log("labs data", payload);
+                        set(ref(db, 'labs/' + payload.name), payload).then(() => { alert("Data Uploaded"); }).catch((e) => { console.log(e); alert(e); });
+
+                    })
+                })
+
+                // var payload = JSON.stringify(localPayload);
+                // console.log(payload);
+
+
+            }
+            setData();
+
+
+        })
+
+
+        function getFromDatabase() {
+            let registrationData = [];
+            return (get(ref(db, 'labs')).then((snapshot) => {
+                console.log("snapshot", snapshot.val());
+                snapshot.forEach((value) => {
+                    registrationData.push(value.val());
+                    console.log("data", registrationData);
+                })
+                for (let i = 0; i < registrationData.length; i++) {
+                    let dataCard = document.querySelector('#labs-list');
+                    let newCard = document.createElement(`div`);
+                    console.log(newCard);
+                    let nCard = newCard.setAttribute("class", "col-md-2");
+
+                    // let listName = document.createElement('td');
+                    // let list2 = document.createElement('td');
+                    // let list3 = document.createElement('td');
+                    // let listName = document.querySelector("#cardName");
+                    newCard.innerHTML = `
+            <div id="empCard" class="card col-md-2" style="width: 18rem; margin-top: 20px;">
+        <img src="${registrationData[i].img}" class="card-img-top" alt="..." width="200px" height="200px" draggable="false">
+        <div class="card-body" id="">
+            <p class="card-text" style="display: inline-block;">Lab Name :</p>
+            <h5 class="card-title" id="cardName" style="display: inline-block;">${registrationData[i].name}</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Lab Incharge : ${registrationData[i].labInc}</li>
+            <li class="list-group-item">Room No : ${registrationData[i].roomNo}</li>
+            <li class="list-group-item">Resources : ${registrationData[i].resources}</li>
+            <li class="list-group-item">Faculty : ${registrationData[i].faculty}</li>
+        </ul>
+    </div>`;
+                    document.querySelector('#labs-list').classList.add('row');
+                    // list2.innerText = registrationData[i].email;
+                    // list3.innerText = registrationData[i].phone;
+                    document.querySelector('#labs-list').append(newCard);
+                    // document.querySelector('#dataCards').append(list);
+                    // document.querySelector('#employee-list').append(list);
+                    // document.querySelector('#employee-list').append(list);
+
+                }
+            })
+
+
+            )
+        }
+
+        getFromDatabase();
+
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>

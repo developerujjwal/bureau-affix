@@ -165,21 +165,23 @@
       
       // var thisRef = storage.child("images/");
       async function setData() {
-       let fireStorage = sref(storage,"registration/"+pic.name);
+       let fireStorage = sref(storage,`registration/${payload.name}/`+pic.name);
       const uploadImg = uploadBytesResumable(fireStorage,pic,pic.type);
-      await uploadImg.on('state_changed',(snapshot)=>{console.log(snapshot);},()=>{getDownloadURL(uploadImg.snapshot.ref).then((url)=>{console.log(url);
+      await uploadImg.on('state_changed',()=>{getDownloadURL(uploadImg.snapshot.ref).then((url)=>{console.log(url);
       
          payload.img = url;
+         console.log("registration data", payload);
+      set(ref(db, 'registration/' + payload.name), payload).then(() => {  alert("Data Uploaded"); }).catch((e) => { console.log(e); alert(e); });
+     
       })})
       
       // var payload = JSON.stringify(localPayload);
       // console.log(payload);
-      console.log("registration data", payload);
-      set(ref(db, 'registration/' + payload.name), payload).then(() => { console.log("data uploaded") }).catch((e) => { console.log(e); });
+      
     
     }
     setData();
-   
+  
     
   })
 
